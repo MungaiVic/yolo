@@ -21,11 +21,14 @@ services:
     build: ./client
     container_name: frontend
     ports:
-      - "8000:3000"
+      - "3000:3000"
     volumes:
       - ./client:/client
     stdin_open: true
     tty: true
+
+networks:
+  default:
 
 volumes:
   mongodb_data:
