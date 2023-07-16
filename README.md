@@ -31,3 +31,11 @@ Make sure that you have the following installed:
 ## Docker images
 
 - The docker images generated from this project can be found here: [Docker](https://hub.docker.com/repositories/mvictorn)
+
+## How to run the docker images
+
+- Clone the repo
+- Navigate to the root folder
+- Run `docker-compose up --build`
+- Open a new terminal and run `docker ps` to see the running containers
+- Open your browser and navigate to `localhost:3000` to view the frontend
