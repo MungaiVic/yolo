@@ -19,7 +19,7 @@ services:
 
   frontend:
     build: ./client
-    container_name: yolo-frontend
+    container_name: frontend
     ports:
       - "8000:3000"
     volumes:
