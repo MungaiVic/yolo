@@ -26,4 +26,6 @@ services:
       - ./client:/client
     stdin_open: true
     tty: true
-    
+
+volumes:
+  mongodb_data:
