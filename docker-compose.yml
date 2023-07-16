@@ -16,4 +16,14 @@ services:
       - DATABASE_URL=mongodb://mongodb:27017
     stdin_open: true
     tty: true
+
+  frontend:
+    build: ./client
+    container_name: yolo-frontend
+    ports:
+      - "8000:3000"
+    volumes:
+      - ./client:/client
+    stdin_open: true
+    tty: true
     
