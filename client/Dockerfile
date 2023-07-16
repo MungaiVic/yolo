@@ -1,8 +1,8 @@
-FROM node:13.12.0
+FROM node:13.12.0-alpine3.11
 
 WORKDIR /client
 
-COPY package.json .
+COPY package*.json .
 
 RUN npm install
 
