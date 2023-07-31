@@ -22,24 +22,20 @@
     - ca-certificates
     - curl
     - gnupg
+    - virtualenv
+    - python3-pip
     - software-properties-common
+  tags: docker_dependancies
 
-- name: Add Docker APT repository
-  apt_repository:
-    repo: "deb [arch={{ dpkg_architecture.stdout }}] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
-    state: present
-    filename: docker
-    update_cache: yes
-    cache_valid_time: 3600
-    validate_certs: yes
-    notify: Update APT cache
-
-- name: Import Docker GPG key
+- name: Add Docker GPG apt Key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
-    validate_certs: yes
-    notify: Update APT cache
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
 
 - name: Install Docker and Docker Compose
   apt:
@@ -51,7 +47,14 @@
     - containerd.io
     - docker-buildx-plugin
     - docker-compose-plugin
+    - docker-compose
   notify: Restart Docker Service
+
+  # Define the handler
+- name: Restart Docker Service
+  service:
+    name: docker
+    state: restarted
 
 - name: Ensire Docker service is started and enabled
   service:

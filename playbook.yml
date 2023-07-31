@@ -1,7 +1,24 @@
 ---
 - name: Yolo Playbook
-  hosts: webservers
+  hosts: all
+  gather_facts: yes
   become: yes
   roles:
     - prepare-server
+  
+  vars:
+    git_repo_url: "https://github.com/MungaiVic/yolo.git"
+    project_name: "yolo"
 
+  tasks:
+    - name: Clone the Git repo
+      git:
+        repo: "{{ git_repo_url }}"
+        dest: /home/ubuntu/{{ project_name }}
+        version: master
+        force: yes
+
+    - name: Run Docker docker-compose.yml
+      command: docker-compose up -d
+      args:
+        chdir: /home/ubuntu/{{ project_name }}
