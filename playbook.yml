@@ -1,3 +1,6 @@
 ---
 - name: Yolo Playbook
+  hosts: webservers
   become: yes
+  roles:
+    - prepare-server

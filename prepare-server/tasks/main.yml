@@ -1,2 +1,60 @@
 ---
 # tasks file for prepare-server
+- name: Install Git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+- name: Install Python 3
+  apt:
+    name: python3
+    state: present
+    update_cache: yes
+
+- name: Install required dependancies for Docker
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg
+    - software-properties-common
+
+- name: Add Docker APT repository
+  apt_repository:
+    repo: "deb [arch={{ dpkg_architecture.stdout }}] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+    state: present
+    filename: docker
+    update_cache: yes
+    cache_valid_time: 3600
+    validate_certs: yes
+    notify: Update APT cache
+
+- name: Import Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+    validate_certs: yes
+    notify: Update APT cache
+
+- name: Install Docker and Docker Compose
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin
+  notify: Restart Docker Service
+
+- name: Ensire Docker service is started and enabled
+  service:
+    name: docker
+    state: started
+    enabled: yes
