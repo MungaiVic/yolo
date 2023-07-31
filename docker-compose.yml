@@ -26,6 +26,8 @@ services:
       - "3000:3000"
     volumes:
       - ./client:/client
+    depends_on:
+      - backend
     stdin_open: true
     tty: true
 
