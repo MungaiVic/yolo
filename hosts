@@ -1,0 +1,2 @@
+[all]
+webserver1 ansible_user=vagrant ansible_host=127.0.0.1
