@@ -1,41 +1,33 @@
-# Requirements
+# Yolo Project
 
-Make sure that you have the following installed:
+- Yolo Project is a simple web application that consists of a Node.js-based API (backend) and a React-based frontend. It uses Docker and Docker Compose to run the application in containers, making it easy to set up and deploy.
 
-- [node](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04)
-- npm
-- [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and start the mongodb service with `sudo service mongod start`
+## Prerequisites
 
-## Navigate to the Client Folder
+- Before you get started, make sure you have the following software installed on your system:
 
- `cd client`
+- Vagrant (https://www.vagrantup.com/)
+- VirtualBox (https://www.virtualbox.org/)
 
-## Run the folllowing command to install the dependencies
+## Getting Started
 
- `npm install`
+- Clone the Yolo Project repository to your local machine:
 
-## Run the folllowing to start the app
+    ```bash
+    git clone https://github.com/MungaiVic/yolo.git
 
- `npm start`
+    ```
 
-## Open a new terminal and run the same commands in the backend folder
+- Change into the project directory:
 
- `cd ../backend`
+    ```bash
+    cd yolo
+    ```
 
- `npm install`
+- Start the Vagrant virtual machine:
 
- `npm start`
+    ```bash
+    vagrant up --provision
+    ```
 
-### Go ahead and add a product (note that the price field only takes a numeric input)
-
-## Docker images
-
-- The docker images generated from this project can be found here: [Docker](https://hub.docker.com/repositories/mvictorn)
-
-## How to run the docker images
-
-- Clone the repo
-- Navigate to the root folder
-- Run `docker-compose up --build`
-- Open a new terminal and run `docker ps` to see the running containers
-- Open your browser and navigate to `localhost:3000` to view the frontend
+- This will provision all that's needed to run the application using docker in the vm.
