@@ -16,7 +16,7 @@ spec:
         - name: frontend
           image: mvictorn/yolo-frontend:v1.0.0
           ports:
-            - containerPort: 80
+            - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
