@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: mvictorn/yolo-frontend:v1.0.3
+          image: mvictorn/yolo-frontend:v1.0.4
           ports:
             - containerPort: 3000
 ---

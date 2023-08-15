@@ -10,7 +10,7 @@ services:
     build: ./backend
     image: mvictorn/yolo-backend:v1.0.0
     ports:
-      - 5010:5000
+      - 5000:5000
     depends_on:
       - mongodb
     environment:
@@ -20,7 +20,7 @@ services:
 
   frontend:
     build: ./client
-    image: mvictorn/yolo-frontend:v1.0.0
+    image: mvictorn/yolo-frontend:v1.0.4
     container_name: frontend
     ports:
       - "3000:3000"

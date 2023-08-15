@@ -80,7 +80,7 @@ class ProductControl extends Component {
     }
     
     componentDidMount(){
-        axios.get('http://' + window.location.hostname +':5010/api/products')
+        axios.get('http://' + window.location.hostname +':5000/api/products')
             .then(res =>{
                 console.log(res)
                 this.setState({
@@ -159,14 +159,14 @@ class ProductControl extends Component {
         //     console.log(pair[0]+ ', ' + pair[1]); 
         // }       
         // console.log(...formData)
-        axios.post('http://' + window.location.hostname +':5010/api/products', newProduct)
+        axios.post('http://' + window.location.hostname +':5000/api/products', newProduct)
             .then(res => console.log(res.data))
         this.setState({
             formVisibleOnPage: false
         })
     };
     handleDeletingProduct = (id) =>{
-        axios.delete('http://' + window.location.hostname +':5010/api/products'+id)
+        axios.delete('http://' + window.location.hostname +':5000/api/products'+id)
             .then(res => console.log(res.data))
             .catch((error) =>{
                 console.log(error)
@@ -186,7 +186,7 @@ class ProductControl extends Component {
     }
     handleEditingProduct = (editedProduct) =>{
 
-        axios.put('http://' + window.location.hostname +':5010/api/products' + this.state.selectedProduct._id, editedProduct)
+        axios.put('http://' + window.location.hostname +':5000/api/products' + this.state.selectedProduct._id, editedProduct)
             .then(res =>console.log(res.data))
         
         this.setState({
