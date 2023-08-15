@@ -1,14 +1,21 @@
-# Stage 1: Build environment
-FROM node:14 AS build
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+# Build stage
+FROM node:13-alpine as build
 
-# Stage 2: Runtime environment
-FROM node:14-alpine
-WORKDIR /app
-COPY --from=build /app/build ./build
-EXPOSE 3000
+WORKDIR /client
+
+# Copy package.json and package-lock.json for npm ci
+COPY package*.json ./
+RUN npm i --only=production
+
+# Copy the rest of the application code
+COPY . .
+
+# Production stage
+FROM node:13-alpine
+
+WORKDIR /client
+
+# Copy the entire application code from the build stage
+COPY --from=build /client .
+
 CMD ["npm", "start"]
