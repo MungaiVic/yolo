@@ -14,3 +14,4 @@
 
 - I used Statefulsets for the database as it is a stateful application. This means that the data is persistent.
 - I used a deployment for the backend as it is a stateless application. This means that the data is not persistent in this case.
+- The backend service type was changed to LoadBalancer to make it accessible from outside the cluster.
